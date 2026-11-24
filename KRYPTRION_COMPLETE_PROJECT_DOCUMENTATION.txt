@@ -1,0 +1,1058 @@
+KRYPTRION
+
+COMPLETE PROJECT
+
+DOCUMENTATION
+
+Architecture • Database & RBAC • AI Copilot & RAG • API • Deployment • Security & Data Protection
+
+Consolidated evidence-based report
+
+Conversation window: 19–23 November 2026
+
+Repository snapshot inspected: uploaded ZIP “kryptrion---ai-security-operations-platform (1).zip”
+
+Generated: 23 November 2026
+
+Handling classification: Internal technical documentation. No credentials, tokens, user records, or secret values are reproduced.
+
+Evidence rule: Repository presence proves what the supplied archive contains. It does not prove live Original Production database state, deployment state, or successful runtime behavior.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 1
+
+Document control and evidence labels
+
+This report combines (1) direct inspection of the uploaded KRYPTRION ZIP, (2) the database/RBAC Markdown artifact embedded inside that ZIP, and (3) relevant project conversations retrieved for 19–23 November 2026. Claims are labelled to prevent repository documentation, chat reports, and live infrastructure facts from being conflated.
+
+Label
+
+Meaning in this report
+
+Verified in uploaded repository
+
+Directly observed in files, source code, SQL migration text, package metadata, or embedded documentation inside the uploaded ZIP.
+
+Reported in project conversations /
+
+Stated in recent discussions or project documentation but not independently proven by live infrastructure evidence repository prose
+
+in this review.
+
+Proposed
+
+A design option or future feature; not established as implemented.
+
+Pending decision
+
+A decision explicitly left open in the project discussions.
+
+Not verified
+
+The supplied ZIP and conversations do not establish the fact; direct live evidence is required.
+
+Inspection boundary: The ZIP was opened and inspected without executing the application, installing dependencies, running migrations, connecting to Supabase, calling Gemini, or changing any files or services. Automated test counts below are repository-documented counts, not tests run during this report.
+
+Executive summary
+
+• Application architecture: The supplied ZIP is a React 19 + TypeScript + Vite frontend with an Express/Node.js backend and Supabase PostgreSQL integration. The server mediates confidential Copilot endpoints.
+
+• Existing Copilot/RAG in this repository: Source includes a server-side Gemini Copilot, verified-session middleware, role-aware context assembly and a role-scoped knowledge retriever over existing Supabase knowledge tables. The repository documents this as Copilot Phase 2 grounded RAG.
+
+• Separate Python RAG workstream: Recent conversations describe a separate Python backend workspace at C:\Users\arjul\Desktop\rag_for_website\kryptrion, with an app/api/core/ingestion/retrieval/services structure. That workstream was reported as environment/folder setup; source inspection, ingestion, role-based retrieval and integration had not yet started at the time of the retrieved chat records. No Python source files are present in the uploaded ZIP (0 .py files).
+
+• Database migrations: The archive contains 13 SQL migration files. Earlier references to 11 correspond to the earlier baseline; migrations 12 and 13 are later hardening changes.
+
+• Production protection: The governing requirement is read-only inspection and preservation of original production data, credentials, API keys and environment values. No secret values are printed in this report.
+
+• Production evidence gap: Repository SQL does not prove what is currently applied to Original Production. The embedded RBAC artifact explicitly classifies Original Production migration ledger, live RLS/grants, knowledge-table DDL/counts, function ownership and storage policies as not verified from available evidence.
+
+• Deployment: README describes Cloud Run compatibility and a completed staging validation. Deployment and staging statements are reported in repository prose; this review did not connect to cloud or database infrastructure.
+
+1. Scope and method
+
+The requested period was the five-day conversation window ending 23 November 2026. The available conversation context covers Phase II RAG setup and source-inspection planning on 20 November, the five-document architecture/security documentation requirements on 21 November, and the consolidated single-PDF request on 22–23 November.
+
+The uploaded archive contains 301 entries and is approximately 6.84 MB. The inspection enumerated its paths, counted migration and Python files, read README/CHANGELOG/requirements/environment docs, reviewed server and Copilot source, inspected relevant tests and SQL migration definitions, and read the embedded KRYPTRION_DATABASE_RBAC.md artifact.
+
+The archive's embedded database/RBAC document is marked updated 21 November 2026. It contains a detailed 13-migration inventory, role matrix, RLS/grant analysis, Phase II ingestion options, and production-vs-staging evidence matrix.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 2
+
+No source code or SQL was changed. No database writes or external service calls were made.
+
+2. Five-day project conversation record
+
+Date
+
+Conversation-derived facts and decisions
+
+Status
+
+20 Nov
+
+Phase II Python backend workspace reported at
+
+Setup reported; not
+
+C:\\Users\\arjul\\Desktop\\rag_for_website\\kryptrion. Structure reported: app/api, core, ingestion, independently inspected in this
+
+retrieval, services; data/documents; storage; tests; .venv active.
+
+ZIP.
+
+20 Nov
+
+The website's actual current architecture and Supabase role/RLS design must be inspected before Binding security constraint.
+
+role-based RAG retrieval is connected. Original production credentials must not be replaced or shared.
+
+21 Nov
+
+Five-document documentation set agreed: PROJECT_ARCHITECTURE, DATABASE_RBAC, Documentation plan.
+
+RAG_IMPLEMENTATION, API_DEPLOYMENT, SECURITY_TESTING.
+
+21 Nov
+
+Audit must be read-only and evidence-based; inspect ZIP/source/migrations; separate production, Binding scope.
+
+staging and local; distinguish repo-defined SQL from live-applied state; do not invent findings or test results.
+
+21 Nov
+
+Architecture discussion explicitly reconciled 11 vs 13 migrations; Cloud Run remained Reported; Decision/evidence rules.
+
+three Phase II ingestion approaches remained undecided; do not claim live production verification.
+
+22–23 Nov
+
+User requested one consolidated PDF from latest ZIP and recent chats, including original-data Current deliverable.
+
+security policies; requested immediate verification and generation.
+
+The five planned documents are consolidated here into one PDF rather than emitted as five separate files. The separate Python RAG workstream is treated as a parallel Phase II project and not misrepresented as part of the supplied website ZIP.
+
+3. Supplied ZIP: direct inspection results
+
+Inspection item
+
+Observed result
+
+Archive
+
+301 entries; 6,839,567 bytes (about 6.84 MB).
+
+Core application
+
+React/TypeScript/Vite SPA; Express server in server.ts; Supabase JS client and PostgreSQL migrations.
+
+Backend AI
+
+src/server/ai contains Copilot authentication, router, context assembler, intent detector, knowledge retriever, usage control and Gemini client.
+
+Database migrations
+
+13 .sql files in supabase/migrations/.
+
+Python files
+
+0 .py files in this ZIP.
+
+RAG/AI tests
+
+Copilot Phase 2 RAG test file, request-scoped RLS test file, Copilot backend/UI/intent test files are present.
+
+Documentation
+
+README.md, CHANGELOG.md, docs/REQUIREMENTS.md, docs/ENVIRONMENT_CONFIGURATION.md, docs/SUPER_ADMIN_BOOTSTRAP.md, and embedded KRYPTRION_DATABASE_RBAC.md.
+
+Actual secrets
+
+No actual .env file was included in the archive listing. .env.example contains placeholders and example configuration; secrets are not reproduced here.
+
+Execution
+
+No npm/bun install, build, test, migration, browser test or live database verification was run for this PDF.
+
+4. Project architecture
+
+4.1 Verified repository architecture
+
+Layer
+
+Repository evidence / responsibility
+
+Frontend
+
+React 19, TypeScript, Vite, Tailwind CSS v4 and Lucide; role-specific workspaces and public portal.
+
+Application server
+
+Express 4 in server.ts; serves built frontend and exposes health/status and Copilot routes.
+
+Identity & authorization
+
+Supabase Auth JWT validation; authoritative role/account status read from user_profiles; approval gate.
+
+Persistence
+
+Supabase PostgreSQL accessed through browser public client and server request-scoped Supabase clients; local repositories support development/demo mode.
+
+AI provider
+
+Google GenAI SDK; Gemini API key is server-side; model defaults to gemini-3.1-flash-lite per README.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 3
+
+Layer
+
+Repository evidence / responsibility
+
+Knowledge retrieval
+
+CopilotKnowledgeRetriever selects role-authorized existing knowledge/operational records; retrieved context is bounded, sanitized and cited.
+
+Audit/governance
+
+PostgreSQL audit logs, account_activity, governance RPCs and WORM-oriented triggers.
+
+4.2 Conceptual data flow
+
+User browser
+
+| Supabase Auth session / Bearer JWT
+
+v
+
+React + TypeScript workspace
+
+| POST /api/copilot/chat
+
+v
+
+Express Copilot router
+
+| authenticate JWT; fetch authoritative role/status
+
+| validate prompt/context; rate/concurrency controls
+
+v
+
+Request-scoped Supabase client (caller JWT)
+
+| RLS + role-scoped retrieval
+
+v
+
+Knowledge tables / authorized operational context
+
+| sanitize + delimit untrusted content + citations
+
+v
+
+Server-side Gemini service
+
+| advisory response + redaction + safe Markdown
+
+v
+
+React Copilot UI (citation badges; human verification)
+
+This is a source-derived logical flow, not a live network trace or runtime measurement.
+
+4.3 Four application roles
+
+Role
+
+Primary scope
+
+Important restrictions
+
+SOC Analyst
+
+Alert triage/investigation, notes, MITRE/knowledge,
+
+No platform administration; operational access only.
+
+(soc_analyst)
+
+incident lifecycle and recommendation review.
+
+Security Engineer
+
+MITRE/detection engineering, knowledge, read-only
+
+Private analyst notes redacted; cannot update incident tasks (security_engineer)
+
+alert/task context, create/update detection
+
+under migration 13.
+
+recommendations.
+
+IT Operations
+
+Assigned remediation tasks and task-linked alerts;
+
+No unrelated alerts; assigned-role scoping applies.
+
+(it_operations)
+
+mitigation/technique knowledge.
+
+Super Admin
+
+Platform governance, approved-user management,
+
+Explicitly denied raw operational alerts, analyst notes, incident (super_admin)
+
+platform audit and aggregate health/intelligence.
+
+tasks and raw role knowledge rows; aggregate-only knowledge metrics.
+
+5. Database architecture and migration inventory
+
+Direct archive enumeration confirms 13 migration SQL files. The 11-vs-13 difference is resolved: the first 11 form the earlier baseline, and two subsequent migrations were added for role-specific knowledge-table RLS/grants and incident-task UPDATE restrictions.
+
+#
+
+Migration file (date prefix)
+
+Purpose
+
+1
+
+20261015000000_initial_cyberops_soc_schema.sql
+
+Core bootstrap, profiles, alerts, notes, incident tasks, audit logs; initial functions, triggers, RLS.
+
+2
+
+20261016000000_user_registration_and_governance.sql
+
+Registration defaults, profile mutation protection, initial Super Admin bootstrap RPC.
+
+3
+
+20261031021500_super_admin_reference_datasets_aggregate_r Super Admin aggregate-only reference dataset summary RPC (31 metrics).
+
+pc.sql
+
+4
+
+20261104000000_detection_improvement_recommendations.sql Detection recommendation workflow, state/role gates, audit and RLS.
+
+5
+
+20261113000000_account_activity_history.sql
+
+Immutable account activity history and profile activity triggers.
+
+6
+
+20261114000000_account_activity_retention_180d.sql
+
+180-day post-deletion anonymization and retention/purge controls.
+
+7
+
+20261114000100_auth_deletion_fk_compatibility.sql
+
+Auth deletion compatibility and reference validation triggers.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 4
+
+#
+
+Migration file (date prefix)
+
+Purpose
+
+8
+
+20261114000200_harden_account_activity_service_role_grants.s Restricts service_role on account_activity to INSERT only.
+
+ql
+
+9
+
+20261114000300_secure_platform_bootstrap_state.sql
+
+Removes public bootstrap reads; approved Super Admin read and minimal status RPC.
+
+10
+
+20261115000000_platform_identity_and_governance_upgrade.sql Platform user IDs, column-level profile grants, governance RPCs and function ownership.
+
+11
+
+20261115000100_harden_service_role_and_security_definer_fun Hardens service_role grants and SECURITY DEFINER function search ctions.sql
+
+paths/owners.
+
+12
+
+20261116000000_knowledge_tables_rls_and_grants.sql
+
+RLS on 3 knowledge tables; authenticated SELECT only; revokes service_role and public/anon access.
+
+13
+
+20261117000000_restrict_incident_tasks_update_policy.sql Limits task UPDATE to approved SOC Analyst or assigned IT Operations; excludes Security Engineer and Super Admin.
+
+Live-state caveat: The 13 files prove repository contents only. The embedded RBAC artifact reports staging migrations through #13 as applied, but that is repository prose/reporting and not rechecked live here. Original Production applied migration history remains Not verified.
+
+5.1 Database domains and table inventory
+
+Domain
+
+Resources
+
+Evidence note
+
+Identity/governance
+
+platform_bootstrap_state; user_profiles; account_activity; Migration-defined; live production state not independently platform-category audit_logs; platform ID sequences.
+
+verified.
+
+Operational SOC
+
+alerts; alert_notes; incident_tasks;
+
+Migration-defined; RLS and WORM-style triggers in SQL.
+
+detection_improvement_recommendations;
+
+operational-category audit_logs.
+
+Role knowledge
+
+soc_analyst_knowledge; security_engineer_knowledge;
+
+Referenced by app and RPC; table DDL/primary
+
+it_operations_knowledge.
+
+keys/indexes are out-of-band and absent from supplied
+
+migrations.
+
+Storage
+
+avatars bucket.
+
+Client code references private bucket and upload
+
+constraints; no bucket/policy DDL in the 13 migrations.
+
+The embedded RBAC document identifies 8 migration-created operational/governance tables, 3 out-of-band knowledge tables, and an out-of-band avatars Storage bucket. The knowledge table schema, ownership, indexes and exact live row counts cannot be inferred from query projections alone.
+
+6. Four-role RBAC and PostgreSQL access controls
+
+6.1 Application permission summary
+
+Capability
+
+SOC Analyst
+
+Security Engineer
+
+IT Operations
+
+Super Admin
+
+Read alerts
+
+Yes
+
+Yes
+
+Assigned/task-linked only
+
+No
+
+Triage/escalate alerts
+
+Yes
+
+No
+
+No
+
+No
+
+Read private analyst notes
+
+Yes
+
+No
+
+No
+
+No
+
+MITRE knowledge
+
+Yes
+
+Yes
+
+No
+
+Aggregate only
+
+Read incident tasks
+
+Yes
+
+Read-only
+
+Assigned only
+
+No
+
+Update incident tasks
+
+Yes
+
+No
+
+Assigned IT Ops only
+
+No
+
+Detection recommendations
+
+Review/validate
+
+Create/update
+
+No
+
+No
+
+Operational audit
+
+Yes
+
+Yes
+
+Yes
+
+No
+
+Platform audit/admin
+
+No
+
+No
+
+No
+
+Yes
+
+The embedded RBAC artifact enumerates 21 application permission tokens in src/types/auth.ts and describes the four-role UI view scopes. The matrix above is a concise summary; individual actions remain subject to server authorization and database policy.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 5
+
+6.2 Two layers of PostgreSQL access
+
+• Layer 1 — SQL privileges: Schema USAGE and table/column GRANT/REVOKE are checked before RLS. Missing privileges can raise permission denied.
+
+• Layer 2 — RLS: When enabled and not bypassed, row policies further constrain rows and mutations; absence of an applicable policy is default-deny.
+
+• service_role nuance: Supabase service_role commonly has BYPASSRLS, but BYPASSRLS does not override a revoked table privilege. A REVOKE ALL on a table can still make service_role receive permission denied.
+
+• SECURITY DEFINER: Runs with function-owner privileges. The repository hardens selected functions'
+
+owners/search_path; authorization inside such functions must use trusted caller identity/role checks rather than assuming current_user is the caller.
+
+6.3 Important policy invariants
+
+• No anon access to protected application data tables is defined by the migration policy model.
+
+• Role-specific knowledge table SELECT is granted to authenticated, with per-table RLS limited to its matching approved role.
+
+• service_role is explicitly revoked from all three knowledge tables in migration 12; do not assume a Python indexer using the service key can read them.
+
+• Super Admin is excluded from raw operational records and gets aggregate knowledge metrics through a guarded RPC.
+
+• audit_logs and account_activity have immutability/retention protections; service_role is revoked from audit_logs and has INSERT-only access to account_activity per repository SQL.
+
+• incident_tasks UPDATE was hardened in migration 13: approved SOC Analyst or approved IT Operations assigned-role path only.
+
+• Bootstrap state reads are restricted to approved Super Admin; a minimal status RPC avoids disclosing bootstrap PII.
+
+6.4 Original production data protection policy
+
+The following requirements are binding constraints carried from the project conversations and embedded documentation:
+
+• Preserve original production database contents, user records, schema, RLS policies, grants, and operational history. Do not reset, seed, truncate, overwrite, migrate, or otherwise mutate production as part of inspection/documentation.
+
+• Preserve existing production Supabase keys, API keys, passwords, connection strings and environment values. Do not replace, rotate, regenerate, overwrite, print, or ask the user to paste secrets unless separately and explicitly authorized for a distinct task.
+
+• Do not copy production secrets into staging, local files, client bundles, Python ingestion configuration, logs, documentation, screenshots or generated PDFs.
+
+• Keep Original Production, KRYPTRION-STAGING and local/demo environments strictly distinct. Never describe staging evidence as production verification.
+
+• Treat public Vite-prefixed Supabase configuration as browser-visible. Keep service_role and Gemini credentials server-only; never use VITE_ prefixes for server secrets.
+
+• Use read-only inspection for this documentation task. No schema, data, source, environment or deployment changes are authorized.
+
+• Do not expose real user records, PII, tokens, API keys or credential values in the report.
+
+This PDF itself is generated from local archive and conversation evidence. It does not access or change the production database.
+
+7. AI Copilot and existing repository RAG
+
+7.1 Existing code paths
+
+Area
+
+Source path
+
+Copilot API routes
+
+src/server/ai/copilotRouter.ts
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 6
+
+Area
+
+Source path
+
+JWT/session and role verification
+
+src/server/ai/copilotAuth.ts
+
+Role-scoped knowledge retrieval
+
+src/server/ai/copilotKnowledgeRetriever.ts
+
+Prompt/context assembly and sanitization
+
+src/server/ai/copilotContextAssembler.ts
+
+Intent detection
+
+src/server/ai/copilotIntentDetector.ts
+
+Rate/concurrency controls
+
+src/server/ai/copilotUsageControl.ts
+
+Gemini provider integration
+
+src/server/ai/geminiClient.ts
+
+Client transport and UI
+
+src/services/copilotClientService.ts; src/hooks/useCopilot.ts; src/components/copilot/
+
+7.2 Repository-described safeguards
+
+• Copilot endpoints require Authorization Bearer JWT; Supabase getUser verifies token and the authoritative role/account status is loaded from user_profiles.
+
+• Approved account status is required; client-supplied role headers/body are not trusted.
+
+• Request validation includes non-empty prompt and maximum 2,000 characters; context types are allow-listed.
+
+• README documents a 10 requests/minute/user rate limit and maximum 5 concurrent requests platform-wide.
+
+• Retrieval is performed with request-scoped Supabase clients bound to the caller JWT, so RLS evaluates caller identity.
+
+• Role scopes: SOC Analyst receives permitted triage and private notes; Security Engineer receives MITRE/detection context and read-only alerts with private notes redacted; IT Operations receives assigned tasks and linked alerts; Super Admin is denied raw operational records.
+
+• Retrieved content is treated as untrusted and structurally delimited; deterministic citation IDs are attached; the system is instructed to report absence of evidence rather than fabricate it.
+
+• Gemini key is server-only; generated output undergoes secret redaction; response is advisory and requires human verification.
+
+• Copilot Markdown rendering avoids dangerouslySetInnerHTML and sanitizes unsafe links.
+
+7.3 What this RAG is—and is not
+
+The uploaded repository contains an existing TypeScript/Express Copilot RAG implementation over role-specific structured knowledge tables and authorized operational records. It does not contain a Python/LangChain/FAISS document-ingestion backend: the ZIP contains zero Python source files. The repository requirements also describe pgvector embeddings indexing over historical incidents as planned for a later version, not as an existing capability.
+
+Therefore, statements such as 'the separate Python RAG service is integrated with the production website' are not supported by this archive. The accurate state is: an existing in-app Gemini + TypeScript role-scoped retrieval path is present in source; a separate Python Phase II backend was reported as scaffold/setup in recent chats, but its implementation and integration are not established here.
+
+8. Separate Python RAG Phase II workstream
+
+Recent conversation context records a separate local project at C:\Users\arjul\Desktop\rag_for_website\kryptrion. The reported scaffold includes app/api, app/core, app/ingestion, app/retrieval, app/services, data/documents, storage, tests, and an active .venv. These are conversation-reported details; they are not present in the uploaded website ZIP and were not independently opened in this review.
+
+Workstream item
+
+Evidence status
+
+Python environment and folder scaffold
+
+Reported complete in 20 Nov conversation.
+
+Inspection of latest website source and exact role/RLS
+
+Not started in retrieved 20 Nov progress record; website ZIP has now been inspected for this mapping
+
+report.
+
+Document ingestion pipeline
+
+Not verified / not started in retrieved progress record.
+
+Role-based Python retrieval
+
+Not verified / not started in retrieved progress record.
+
+Integration with existing React/Express Copilot
+
+Not verified; not in uploaded ZIP.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 7
+
+Workstream item
+
+Evidence status
+
+Supabase schema/permissions for Python indexer
+
+Requires explicit architecture decision and live-safe verification.
+
+8.1 Three ingestion access options — all undecided
+
+Option
+
+Mechanism
+
+Trade-off / status
+
+1. Dedicated read-only DB
+
+New narrowly scoped PostgreSQL role limited to the three Would require a forward-only DB migration and a
+
+role
+
+knowledge tables.
+
+dedicated credential. Proposed; undecided.
+
+2. Versioned offline
+
+Controlled export of sanitized CSV/JSONL/Parquet snapshots; Avoids live DB credentials in Python; release-gated
+
+snapshots
+
+Python ingests only those artifacts.
+
+freshness. Proposed; undecided.
+
+3. Dedicated SECURITY
+
+A narrowly scoped paginated export interface with strict function Requires DB migration and careful function security.
+
+DEFINER export RPC/view
+
+owner/search_path and dedicated caller.
+
+Proposed; undecided.
+
+Critical: Do not let a Python worker use SUPABASE_SERVICE_ROLE_KEY to bypass the knowledge-table restrictions.
+
+Migration 12 explicitly revokes service_role privileges from all three knowledge tables. No option above is selected or approved in the retrieved project record. The decision identifier recorded in the embedded RBAC artifact is PD-ARCH-06.
+
+9. API and deployment
+
+9.1 Documented API surface
+
+Endpoint
+
+Authentication
+
+Purpose
+
+GET /healthz
+
+Public health endpoint
+
+Health response and environment metadata.
+
+GET /api/status
+
+Public
+
+Basic API service status.
+
+GET /api/copilot/status
+
+Approved JWT
+
+Copilot/model readiness; detailed metrics only for Super Admin.
+
+POST /api/copilot/chat
+
+Approved JWT
+
+Validated prompt, context type and optional entity ID; role-scoped advisory response.
+
+The README documents /api/copilot/chat with allow-listed context types: alert_triage, mitre_analysis, remediation_task, platform_health and general_soc. It documents 10 requests/minute/user and five concurrent requests platform-wide. These are repository-described settings, not independently measured runtime behavior.
+
+9.2 Environment separation
+
+• Default runtime uses production-targeted environment configuration and validates frontend/backend Supabase URL parity.
+
+• Explicit KRYPTRION_ENV=staging selects an isolated staging configuration, with staging build output separated as dist-staging and fail-closed URL validation.
+
+• Staging env loading is isolated from default .env; server secrets must be stored in server-side runtime configuration, never Vite-exposed variables.
+
+• README and embedded artifact report staging project validation through migration 13. This report does not independently query staging.
+
+• Original Production project identifiers and exact secret values are intentionally omitted from this PDF.
+
+9.3 Deployment status
+
+README describes Express static serving, container readiness and compatibility with Google Cloud Run, AWS ECS and Docker. The embedded RBAC artifact labels a Cloud Run service/revision and some operational observations as Reported, not independently live-verified. No Dockerfile or Cloud Run YAML was identified in the top-level repository inventory. Do not claim this inspection verified a live deployment.
+
+10. Security findings and evidence gaps
+
+Priority
+
+Finding / concern
+
+Evidence and disposition
+
+High
+
+Do not treat repository migration SQL as proof of
+
+13 SQL files verified in ZIP; Original Production migration ledger, live grants, policies live production security.
+
+and function ownership not verified.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 8
+
+Priority
+
+Finding / concern
+
+Evidence and disposition
+
+High
+
+Python ingestion access can conflict with explicit
+
+Migration 12 revokes service_role on three knowledge tables. Dedicated ingestion knowledge-table service_role revocations.
+
+access design is undecided.
+
+High
+
+Do not conflate current TypeScript RAG with
+
+Existing TypeScript retrieval source present; zero Python files in uploaded ZIP; chat separate Python RAG integration.
+
+says separate backend scaffold only.
+
+High
+
+Role separation must remain enforced at database
+
+Source and SQL define role-specific access; live production policy application not and server layers.
+
+verified.
+
+Medium
+
+Knowledge table DDL and physical schema are
+
+Query projections and RPC references exist; CREATE TABLE DDL, indexes, PKs out-of-band.
+
+and live row counts absent from migration directory.
+
+Medium
+
+Avatar storage policies are not represented by
+
+Client service references private avatars bucket and upload validation; live migration files.
+
+bucket/policies not verified.
+
+Medium
+
+Production runtime/deployment evidence
+
+Cloud Run and staging statements are reported in project docs/artifact; not checked incomplete.
+
+live here.
+
+Medium
+
+Document upload RAG knowledge base is not
+
+The admin-managed uploaded-document knowledge base discussed in prior security established as implemented.
+
+audit material is a proposed feature; current repository RAG is structured knowledge retrieval.
+
+10.1 Additional verification required
+
+• Original Production: read-only applied migration ledger, pg_policies, information_schema.role_table_grants, table ownership and function ownership.
+
+• Original Production: out-of-band knowledge table DDL, primary keys, indexes, exact row counts and data-quality profile.
+
+• Original Production: storage.buckets and storage.objects policies for avatars.
+
+• Deployment: current Cloud Run revision, environment variable names (not values), service account permissions, health endpoint and logs with secrets/PII redacted.
+
+• Runtime: execute repository test suites and production build only in an approved isolated environment; do not point tests at production if they can mutate state.
+
+• Python Phase II: inspect its actual local files and dependency lockfile; define the ingestion access decision; verify authorization, provenance, versioning, prompt-injection controls and end-to-end integration.
+
+11. Test and verification status
+
+The README documents the following suite counts. These counts are copied as repository documentation claims and are not results from a test run performed for this PDF.
+
+Suite
+
+Documented
+
+What it covers (README summary)
+
+count
+
+authAndGovernanceTest.ts
+
+135
+
+Registration, triggers, anti-self-approval, password recovery and session governance.
+
+copilotBackendTest.ts
+
+181
+
+Token verification, role isolation, prompt sanitization and rate limiting.
+
+copilotPhase1AutomaticContextTest.ts
+
+33
+
+Intent detection, role boundaries, model indicator and safe Markdown.
+
+copilotPhase2RagTest.ts
+
+38
+
+Role-scoped knowledge, citations, anti-injection and repository-mode separation.
+
+copilotRequestScopedRlsTest.ts
+
+84
+
+JWT propagation, key parity, mocked role/RLS cases, sanitization and migration checks.
+
+copilotUiTest.ts
+
+64
+
+Client error wrapping, leakage prevention and drawer invariants.
+
+geminiSmokeReportingTest.ts
+
+5
+
+Offline exit codes, 503 handling and timeout resilience.
+
+sqlMigrationSecurityTest.ts
+
+180
+
+Static migration security invariants, RLS, WORM, bootstrap and task-update hardening.
+
+stagingEnvironmentTest.ts
+
+44
+
+Staging isolation, URL bypass rejection, secret guards and fail-closed checks.
+
+sanityCheck.ts
+
+3
+
+Baseline MITRE, deterministic triage and role capabilities.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 9
+
+The README also describes additional full suites for incident lifecycle, IT Operations knowledge and Super Admin aggregate RPC without a fixed numeric count in its table. Test counts may overlap across combined npm scripts; do not sum them as unique assertions.
+
+Verification performed for this report: archive opened; 301 entries enumerated; migration file count (13) and Python file count (0) checked; README, CHANGELOG, requirements, environment and bootstrap docs reviewed; Copilot source paths and embedded RBAC artifact reviewed. Not performed: npm/bun install, TypeScript check, test execution, production build, browser test, Supabase query, Gemini request, deployment inspection.
+
+12. Five-document coverage consolidated into this PDF
+
+Original document scope
+
+Included sections in this consolidated PDF
+
+KRYPTRION_PROJECT_ARCHITECTURE
+
+Sections 1–4: control, chronology, ZIP inspection, architecture, data flow and roles.
+
+KRYPTRION_DATABASE_RBAC
+
+Sections 5–6: migration inventory, table domains, grants/RLS, role boundaries and production data policy.
+
+KRYPTRION_RAG_IMPLEMENTATION
+
+Sections 7–8: existing Copilot RAG, Python Phase II status, ingestion options and security constraints.
+
+KRYPTRION_API_DEPLOYMENT
+
+Section 9: documented endpoints, environment separation and deployment evidence.
+
+KRYPTRION_SECURITY_TESTING
+
+Sections 10–11: findings, evidence gaps, test inventory and verification limits.
+
+13. Recommended next steps (documentation and
+
+verification only)
+
+• Keep this PDF as the consolidated repository/chat evidence snapshot; update it only when new source or live evidence is supplied.
+
+• Before implementing Python RAG ingestion, resolve PD-ARCH-06 among the three documented access options. Do not restore broad service_role privileges.
+
+• Inspect the separate Python project directory and record exact implemented files, dependency versions, ingestion behavior and tests.
+
+• Obtain redacted, read-only Original Production outputs to verify applied migration history, grants, RLS, knowledge table structure and storage policies.
+
+• Maintain distinct evidence labels: Verified in repository; Reported; Proposed; Pending decision; Not verified.
+
+• Any future implementation requires separate explicit approval and a change plan; this documentation task itself authorizes no code, SQL, database, credential or deployment changes.
+
+Appendix A — Key repository paths reviewed
+
+• README.md; CHANGELOG.md; docs/REQUIREMENTS.md; docs/ENVIRONMENT_CONFIGURATION.md; docs/SUPER_ADMIN_BOOTSTRAP.md
+
+• server.ts; package.json; .env.example
+
+• src/server/ai/copilotRouter.ts; copilotAuth.ts; copilotKnowledgeRetriever.ts; copilotContextAssembler.ts; copilotIntentDetector.ts; copilotUsageControl.ts; geminiClient.ts
+
+• src/lib/supabaseClient.ts; src/context/AuthContext.tsx; src/services/authorizationService.ts; src/services/knowledgeService.ts
+
+• src/test/copilotBackendTest.ts; copilotPhase2RagTest.ts; copilotRequestScopedRlsTest.ts; sqlMigrationSecurityTest.ts; stagingEnvironmentTest.ts
+
+• supabase/migrations/*.sql (13 files); supabase/rollback_strategy.sql; supabase/seed.sql
+
+• .aistudio/artifacts/brain/.../KRYPTRION_DATABASE_RBAC.md (embedded artifact updated 21 Nov 2026) Appendix B — Source and evidence notes
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 10
+
+The project conversation facts in Section 2 are drawn from the retrieved recent project conversation context for 20–22
+
+November 2026. The ZIP is the uploaded archive in this conversation. The embedded RBAC artifact inside the ZIP is a source document, not an independent live database attestation.
+
+The repository's README and documentation contain example environment values and provider/project references. Secret values and production project identifiers are deliberately not repeated here. The PDF focuses on controls and architecture rather than reproducing configuration values.
+
+End of report.
+
+KRYPTRION — Consolidated Project Documentation | Internal Page 11
+
+
+
+
+
